@@ -9,3 +9,94 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  name       String
+  avatar     String
+  email      String   @unique()
+  currency   String?
+  payMethods String[]
+
+  Subscriptions Subscriptions[]
+  @@index([name, email])
+  @@map("users")
+}
+
+model Services {
+  id String @id @default(uuid())
+
+  name    String
+  logo    String
+  type    Type    @default(ENTERTAINMENT)
+  color   String?
+  default Boolean
+
+  Subscriptions Subscriptions[]
+  @@index([name, type])
+  @@map("services")
+}
+
+enum Type {
+  ENTERTAINMENT
+  MUSIC
+  GAMES
+  EDUCATION
+  FINANCIAL
+  HEALTH
+  PRODUCTIVITY
+  BEAUTY
+  PET
+  OTHERS
+}
+
+model Subscriptions {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  description String
+  price       Float
+  payMethod   String
+  payday      DateTime
+  cycle       Cycle    @default(MENSAL)
+  duration    Duration @default(MES)
+  reminder    Reminder @default(MESMO_DIA)
+  currency    String
+  shared      Boolean
+  people      Json
+
+  services  Services @relation(fields: [serviceId], references: [id])
+  serviceId String
+
+  users  Users  @relation(fields: [userId], references: [id])
+  userId String
+
+  @@index([serviceId, userId])
+  @@map("subscriptions")
+}
+
+enum Cycle {
+  MENSAL
+  TRIMESTRAL
+  SEMESTRAL
+  ANUAL
+}
+
+enum Duration {
+  MES
+  TRIMESTRE
+  SEMESTRE
+  ANO
+  SEMPRE
+}
+
+enum Reminder {
+  NUNCA
+  MESMO_DIA
+  DIAS
+  SEMANAS
+  MESES
+  ANO
+}

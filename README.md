@@ -11,7 +11,7 @@
 #### Domains
 
 - User
-- Stream
+- Service
 - Subscription
 
 #### User create
@@ -25,14 +25,14 @@ id     | name   | avatar | email  | currency | pay_methods
 :----- | :----: | :----: | :----: | :----:   | :----:
 string | string | string | string | string   | string[]
 
-#### Streams
+#### Services
 
 - Deixar pré cadastradas as streams mais conhecidas/utilizadas no Brasil
 - Permitir o cadastro de novas streams existentes pelo app (Cadastro de uma subscription)
 
 id     | name   | logo   | type   | color
 :----: | :----: | :----: | -----: | :----:
-string | string | enum   | string | string
+string | string | string | enum   | string
 
 #### Subscription create
 
