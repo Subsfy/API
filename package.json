@@ -4,6 +4,7 @@
   "description": "Seu gerenciador de assinaturas",
   "main": "index.js",
   "scripts": {
+    "studio": "npx prisma studio",
     "test": "jest",
     "dev": "ts-node-dev src/server.ts",
     "build": "npx tsc",
@@ -21,11 +22,13 @@
   },
   "homepage": "https://github.com/JacksonFA/subsfy#readme",
   "devDependencies": {
+    "@swc/core": "^1.2.179",
     "@swc/jest": "^0.2.20",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.0",
     "@types/node": "^17.0.31",
+    "@types/nodemailer": "^6.4.4",
     "@types/react": "^18.0.9",
     "husky": "^7.0.4",
     "jest": "^28.1.0",
@@ -38,6 +41,7 @@
     "@prisma/client": "^3.13.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "nodemailer": "^6.7.5"
   }
 }

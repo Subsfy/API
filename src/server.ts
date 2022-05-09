@@ -7,5 +7,5 @@ function middlewares(): void {}
 function documentation(): void {}
 
 App.listen(port, () => {
-    console.log(`API running on port: ${port}, env: ${env}`)
+  console.log(`API running on port: ${port}, env: ${env}`)
 })
