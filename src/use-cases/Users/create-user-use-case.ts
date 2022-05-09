@@ -1,11 +1,11 @@
-import { MailAdapter } from '@adapters/mail-adapter'
+import { IMailAdapter } from '@adapters/mail-adapter'
 import { IUsersRepository } from '@repositories/users-repository'
 import { ICreateUserCaseRequest } from '../dtos/usersDTOS'
 
 export class CreateUserUseCase {
   constructor(
     private usersRepository: IUsersRepository,
-    private mailAdapter: MailAdapter
+    private mailAdapter: IMailAdapter
   ) {}
 
   async execute(request: ICreateUserCaseRequest) {
