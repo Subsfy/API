@@ -4,6 +4,8 @@
   "description": "Seu gerenciador de assinaturas",
   "main": "index.js",
   "scripts": {
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint": "eslint . --ext .ts",
     "studio": "npx prisma studio",
     "test": "jest",
     "dev": "ts-node-dev src/server.ts",
@@ -21,6 +23,11 @@
     "url": "https://github.com/JacksonFA/subsfy/issues"
   },
   "homepage": "https://github.com/JacksonFA/subsfy#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test"
+    }
+  },
   "devDependencies": {
     "@swc/core": "^1.2.179",
     "@swc/jest": "^0.2.20",
