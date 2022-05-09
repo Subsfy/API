@@ -4,6 +4,7 @@ import { PrismaUsersRepository } from '@repositories/prisma/prisma-users-reposit
 import { ICreateUserCaseRequest } from '@use-cases/dtos/usersDTOS'
 import { CreateUserUseCase } from '@use-cases/Users/create-user-use-case'
 import { FindUsersUseCase } from '@use-cases/Users/find-users-use-case'
+import { logger } from '../../src/winston'
 
 export class UsersController {
   public create = async (req: Request, res: Response): Promise<Response> => {
@@ -34,8 +35,8 @@ export class UsersController {
 
       return res.status(201).json({ success: true, message: 'Cadastro realizado com sucesso' })
     } catch (error) {
-      console.log('Error: Cadastro de usuário')
-      console.log(error)
+      logger.error('Error: Cadastro de usuário')
+      logger.error(error)
       return res.status(500).json({ success: false, message: 'Não foi possível realizar o cadastro, verifique suas informações.' })
     }
   }
@@ -50,8 +51,8 @@ export class UsersController {
 
       return res.status(201).json({ success: true, message: 'Listagem de usuários', data: users })
     } catch (error) {
-      console.log('Error: Cadastro de usuário')
-      console.log(error)
+      logger.error('Error: Cadastro de usuário')
+      logger.error(error)
       return res.status(500).json({ success: false, message: 'Não foi possível realizar o cadastro, verifique suas informações.' })
     }
   }

@@ -1,5 +1,6 @@
 import 'module-alias/register'
 import App from './app'
+import { logger } from './winston'
 
 const port = process.env.PORT || 3333
 const env = process.env.API_ENV || 'dev'
@@ -8,5 +9,5 @@ const env = process.env.API_ENV || 'dev'
 // function documentation(): void {}
 
 App.listen(port, () => {
-  console.log(`API running on port: ${port}, env: ${env}`)
+  logger.info(`API running on port: ${port}, env: ${env}`)
 })
