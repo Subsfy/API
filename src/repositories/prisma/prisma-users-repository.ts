@@ -1,4 +1,4 @@
-import { IUserDataDTO } from '../dtos/usersDTOS'
+import { IUserDataDTO } from '../../../src/dtos/usersDTOS'
 import { prisma } from '../../prisma'
 import { IUsersRepository } from '../users-repository'
 

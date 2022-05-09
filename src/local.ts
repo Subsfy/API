@@ -1,4 +1,4 @@
-// import 'module-alias/register'
+import 'reflect-metadata'
 import App from './app'
 import { logger } from './winston'
 

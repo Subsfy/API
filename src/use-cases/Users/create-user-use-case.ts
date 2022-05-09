@@ -1,6 +1,6 @@
 import { IMailAdapter } from '@adapters/mail-adapter'
+import { IUserDataDTO } from '../../../src/dtos/usersDTOS'
 import { IUsersRepository } from '@repositories/users-repository'
-import { ICreateUserCaseRequest } from '../dtos/usersDTOS'
 
 export class CreateUserUseCase {
   constructor(
@@ -8,7 +8,7 @@ export class CreateUserUseCase {
     private mailAdapter: IMailAdapter
   ) {}
 
-  async execute(request: ICreateUserCaseRequest) {
+  async execute(request: IUserDataDTO) {
     const {
       name,
       email
