@@ -1,4 +1,4 @@
-import 'module-alias/register'
+// import 'module-alias/register'
 import App from './app'
 
 const port = process.env.PORT || 3333

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { UsersController } from '../controllers/users-controller'
+import { UsersController } from '@controllers/users-controller'
 
 const router = Router()
 
@@ -12,6 +12,7 @@ export class UserRoutes {
     const controller = this.userController
 
     router.post('/users', controller.create)
+    router.get('/users', controller.find)
 
     return router
   }

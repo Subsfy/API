@@ -1,10 +1,11 @@
-import { CreateUserUseCase } from "./create-user-use-case"
+import { CreateUserUseCase } from './create-user-use-case'
 
 const createUserSpy = jest.fn()
+const findUsersSpy = jest.fn()
 const sendMailSpy = jest.fn()
 
 const createUser = new CreateUserUseCase(
-  { create: createUserSpy },
+  { create: createUserSpy, find: findUsersSpy },
   { sendMail: sendMailSpy }
 )
 

@@ -1,7 +1,7 @@
-export interface UserDataDTO {
-  name: string
-  avatar: string
-  email: string
-  currency: string
-  payMethods: string[]
+export interface IUserDataDTO {
+  name: string;
+  avatar: string;
+  email: string;
+  currency: string;
+  payMethods: string[];
 }

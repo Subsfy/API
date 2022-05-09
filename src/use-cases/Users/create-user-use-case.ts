@@ -1,18 +1,18 @@
-import { MailAdapter } from "../../adapters/mail-adapter"
-import { UsersRepository } from "../../repositories/users-repository"
-import { CreateUserCaseRequest } from "../dtos/usersDTOS"
+import { MailAdapter } from '@adapters/mail-adapter'
+import { IUsersRepository } from '@repositories/users-repository'
+import { ICreateUserCaseRequest } from '../dtos/usersDTOS'
 
 export class CreateUserUseCase {
   constructor(
-    private usersRepository: UsersRepository,
+    private usersRepository: IUsersRepository,
     private mailAdapter: MailAdapter
   ) {}
 
-  async execute(request: CreateUserCaseRequest) {
+  async execute(request: ICreateUserCaseRequest) {
     const {
       name,
       email
-    } = request;
+    } = request
 
     if (!name) {
       throw new Error('Name is required.')
@@ -28,9 +28,9 @@ export class CreateUserUseCase {
       to: email,
       subject: `Seja muito bem vindo ${name}!`,
       body: [
-          `<div style="font-family: sans-serif; font-size: 16px; color: #111">`,
-          `<p>Olá: ${name}</p>`,
-          `</div>`,
+        '<div style="font-family: sans-serif; font-size: 16px; color: #111">',
+        `<p>Olá: ${name}</p>`,
+        '</div>',
       ].join('\n')
     })
   }
