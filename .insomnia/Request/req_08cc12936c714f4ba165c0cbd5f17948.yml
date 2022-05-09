@@ -1,0 +1,33 @@
+_id: req_08cc12936c714f4ba165c0cbd5f17948
+type: Request
+parentId: fld_4dc8c7a82c25485fb58a4caccd4b0e33
+modified: 1652124216764
+created: 1652066335205
+url: "{{ _.baseUrl }}/users"
+name: Create
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "Teste Insomnia",
+    	"email": "testeInsomnia@teste.com",
+    	"avatar": "https://github.com/jacksonfa.png",
+    	"currency": "real",
+    	"payMethods": ["Nubank", "Inter"]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_6c4508c4b06a4b978c416f63a036b264
+authentication: {}
+metaSortKey: -1652066335206
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

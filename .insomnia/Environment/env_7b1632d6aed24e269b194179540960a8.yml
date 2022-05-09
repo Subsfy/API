@@ -1,0 +1,14 @@
+_id: env_7b1632d6aed24e269b194179540960a8
+type: Environment
+parentId: env_b3fff74d4537704b2eafb2953417ecfc61a2e1aa
+modified: 1652123811407
+created: 1652066120787
+name: Production
+data:
+  baseUrl: https://subsfy-production.up.railway.app
+dataPropertyOrder:
+  "&":
+    - baseUrl
+color: "#880202"
+isPrivate: false
+metaSortKey: 2

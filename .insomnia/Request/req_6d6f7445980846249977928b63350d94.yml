@@ -1,0 +1,21 @@
+_id: req_6d6f7445980846249977928b63350d94
+type: Request
+parentId: wrk_ada5ba4362a14285ad1f12ef2f922d86
+modified: 1652111551942
+created: 1652066370003
+url: "{{ _.baseUrl }}/"
+name: Test API
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1652066370003
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

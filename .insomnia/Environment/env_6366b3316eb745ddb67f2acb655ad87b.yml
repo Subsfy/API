@@ -1,0 +1,14 @@
+_id: env_6366b3316eb745ddb67f2acb655ad87b
+type: Environment
+parentId: env_b3fff74d4537704b2eafb2953417ecfc61a2e1aa
+modified: 1652123817117
+created: 1652066106481
+name: Development
+data:
+  baseUrl: https://subsfy-development.up.railway.app
+dataPropertyOrder:
+  "&":
+    - baseUrl
+color: "#f04cbc"
+isPrivate: false
+metaSortKey: 1
