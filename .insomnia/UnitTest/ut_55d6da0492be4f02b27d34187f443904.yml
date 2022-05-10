@@ -1,9 +1,9 @@
-_id: ut_b85d55e0ed524f76800460c02de85e1f
+_id: ut_55d6da0492be4f02b27d34187f443904
 type: UnitTest
 parentId: uts_f7b526b9c1e644858405fa2dad71a0ad
-modified: 1652138989395
-created: 1652123754512
-requestId: req_08cc12936c714f4ba165c0cbd5f17948
+modified: 1652215215771
+created: 1652215123921
+requestId: req_wrk_ada5ba4362a14285ad1f12ef2f922d866e157c5d
 name: Create user
 code: |-
   const response1 = await insomnia.send();

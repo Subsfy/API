@@ -1,9 +1,9 @@
-_id: req_54391c3f00d94282afc3f4b2674f4258
+_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d86df251b06
 type: Request
 parentId: fld_4dc8c7a82c25485fb58a4caccd4b0e33
-modified: 1652143126011
-created: 1652115038633
-url: "{{ _.baseUrl }}/users"
+modified: 1652197640349
+created: 1652146582961
+url: "{{ base_url }}/users"
 name: List
 description: ""
 method: GET
