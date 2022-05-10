@@ -1,14 +1,19 @@
 _id: env_7b1632d6aed24e269b194179540960a8
 type: Environment
 parentId: env_b3fff74d4537704b2eafb2953417ecfc61a2e1aa
-modified: 1652123811407
+modified: 1652201391364
 created: 1652066120787
 name: Production
 data:
-  baseUrl: https://subsfy-production.up.railway.app
+  base_url: https://subsfy-production.up.railway.app
+  xAccessToken: ""
+  userId: "{% response 'body', 'req_wrk_ada5ba4362a14285ad1f12ef2f922d866e157c5d',
+    'b64::JC5kYXRhLmlk::46b', 'never', 60 %}"
 dataPropertyOrder:
   "&":
-    - baseUrl
+    - base_url
+    - xAccessToken
+    - userId
 color: "#880202"
 isPrivate: false
 metaSortKey: 2

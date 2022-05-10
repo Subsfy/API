@@ -1,9 +1,9 @@
-_id: req_08cc12936c714f4ba165c0cbd5f17948
+_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d866e157c5d
 type: Request
 parentId: fld_4dc8c7a82c25485fb58a4caccd4b0e33
-modified: 1652138723758
-created: 1652066335205
-url: "{{ _.baseUrl }}/users"
+modified: 1652215370009
+created: 1652146582963
+url: "{{ base_url }}/users"
 name: Create
 description: ""
 method: POST
@@ -12,17 +12,21 @@ body:
   text: |-
     {
     	"name": "Teste Insomnia",
-    	"email": "testeInsomnia@teste.com",
+    	"email": "testeInsomnia@teste.com.br",
     	"avatar": "https://github.com/jacksonfa.png",
     	"currency": "real",
-    	"payMethods": ["Nubank", "Inter"]
+    	"payMethods": [
+    		"Nubank",
+    		"Inter"
+    	]
     }
 parameters: []
 headers:
   - name: Content-Type
     value: application/json
+    id: pair_42b0a571c8b34c048c35595c3459ff3d
 authentication: {}
-metaSortKey: -1652066335206
+metaSortKey: -1651700413489.25
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

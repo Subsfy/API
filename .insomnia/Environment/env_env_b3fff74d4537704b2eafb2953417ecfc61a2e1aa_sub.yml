@@ -1,15 +1,19 @@
 _id: env_env_b3fff74d4537704b2eafb2953417ecfc61a2e1aa_sub
 type: Environment
 parentId: env_b3fff74d4537704b2eafb2953417ecfc61a2e1aa
-modified: 1652142472596
+modified: 1652212135911
 created: 1652138703375
 name: OpenAPI env
 data:
-  scheme: http
-  base_path: ""
-  host: localhost:3333
-  xAccessToken: xAccessToken
-dataPropertyOrder: null
-color: null
+  base_url: https://subsfy-development.up.railway.app
+  xAccessToken: ""
+  userId: "{% response 'body', 'req_wrk_ada5ba4362a14285ad1f12ef2f922d866e157c5d',
+    'b64::JC5kYXRhLmlk::46b', 'never', 60 %}"
+dataPropertyOrder:
+  "&":
+    - base_url
+    - xAccessToken
+    - userId
+color: "#ff8800"
 isPrivate: false
 metaSortKey: 1652138703375
