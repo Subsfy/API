@@ -14,7 +14,7 @@ export class UsersController {
     avatar,
     currency,
     payMethods
-  }: IUserDataDTO): Promise<void> {
+  }: IUserDataDTO): Promise<Users> {
 
     const prismaUsersRepository = new PrismaUsersRepository()
     const nodemailerMailAdapter = new NodemailMailAdapter()
@@ -24,7 +24,7 @@ export class UsersController {
       nodemailerMailAdapter,
     )
 
-    await createUserUseCase.execute({
+    return createUserUseCase.execute({
       name,
       email,
       avatar,

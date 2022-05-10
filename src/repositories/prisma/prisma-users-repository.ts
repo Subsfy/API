@@ -4,8 +4,8 @@ import { prisma } from '../../prisma'
 import { IUsersRepository } from '../users-repository'
 
 export class PrismaUsersRepository implements IUsersRepository {
-  async create(data: IUserDataDTO): Promise<void> {
-    await prisma.users.create({ data })
+  async create(data: IUserDataDTO): Promise<Users> {
+    return prisma.users.create({ data })
   }
 
   async find({ name, email }: IUserFindDTO): Promise<Users[]> {

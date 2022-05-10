@@ -14,9 +14,9 @@ export class UserRoutes {
 
     router.post('/users', async (req, res) => {
       try {
-        await controller.create(req.body)
+        const user = await controller.create(req.body)
 
-        return res.status(201).json({ success: true, message: 'Cadastro de usuário realizado com sucesso' })
+        return res.status(201).json({ success: true, message: 'Cadastro de usuário realizado com sucesso', data: user })
       } catch (error) {
         logger.error('Error: Cadastro de usuário')
         logger.error(error)

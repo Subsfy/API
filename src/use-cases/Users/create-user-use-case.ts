@@ -22,7 +22,7 @@ export class CreateUserUseCase {
       throw new Error('Email is required.')
     }
 
-    await this.usersRepository.create(request)
+    const user = await this.usersRepository.create(request)
 
     await this.mailAdapter.sendMail({
       to: email,
@@ -33,5 +33,7 @@ export class CreateUserUseCase {
         '</div>',
       ].join('\n')
     })
+
+    return user
   }
 }
