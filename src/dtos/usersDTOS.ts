@@ -6,3 +6,8 @@ export interface IUserDataDTO {
   currency: string;
   payMethods: string[];
 }
+
+export interface IUserFindDTO {
+  name?: string;
+  email?: string;
+}

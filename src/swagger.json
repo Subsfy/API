@@ -148,11 +148,86 @@
 				"security": [],
 				"parameters": []
 			}
-		}
+		},
+    "/users/{userId}": {
+      "delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					},
+					"404": {
+						"description": "Usuário não encontrado."
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "FindById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Users"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Usuário não encontrado."
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+    }
 	},
 	"servers": [
 		{
-			"url": "/"
-		}
+			"url": "http://localhost:3333"
+		},
+    {
+      "url": "https://subsfy-development.up.railway.app"
+    }
 	]
 }
