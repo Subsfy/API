@@ -1,8 +1,241 @@
 _id: spc_bf11bc96aa68403b82ff14a2deeccf0e
 type: ApiSpec
 parentId: wrk_ada5ba4362a14285ad1f12ef2f922d86
-modified: 1652066070431
+modified: 1652142562296
 created: 1652066070431
 fileName: Subsfy
-contents: ""
+contents: |
+  {
+  	"components": {
+  		"examples": {},
+  		"headers": {},
+  		"parameters": {},
+  		"requestBodies": {},
+  		"responses": {},
+  		"schemas": {
+  			"IUserDataDTO": {
+  				"properties": {
+  					"id": {
+  						"type": "string"
+  					},
+  					"name": {
+  						"type": "string"
+  					},
+  					"avatar": {
+  						"type": "string"
+  					},
+  					"email": {
+  						"type": "string"
+  					},
+  					"currency": {
+  						"type": "string"
+  					},
+  					"payMethods": {
+  						"items": {
+  							"type": "string"
+  						},
+  						"type": "array"
+  					}
+  				},
+  				"required": [
+  					"name",
+  					"avatar",
+  					"email",
+  					"currency",
+  					"payMethods"
+  				],
+  				"type": "object",
+  				"additionalProperties": false
+  			},
+  			"Users": {
+  				"properties": {
+  					"payMethods": {
+  						"items": {
+  							"type": "string"
+  						},
+  						"type": "array"
+  					},
+  					"currency": {
+  						"type": "string",
+  						"nullable": true
+  					},
+  					"email": {
+  						"type": "string"
+  					},
+  					"avatar": {
+  						"type": "string"
+  					},
+  					"name": {
+  						"type": "string"
+  					},
+  					"createdAt": {
+  						"type": "string",
+  						"format": "date-time"
+  					},
+  					"id": {
+  						"type": "string"
+  					}
+  				},
+  				"required": [
+  					"payMethods",
+  					"currency",
+  					"email",
+  					"avatar",
+  					"name",
+  					"createdAt",
+  					"id"
+  				],
+  				"type": "object",
+  				"description": "Model Users"
+  			}
+  		},
+  		"securitySchemes": {
+  			"api_key": {
+  				"type": "apiKey",
+  				"name": "X-Access-Token",
+  				"in": "header"
+  			}
+  		}
+  	},
+  	"info": {
+  		"title": "subsfy",
+  		"version": "1.0.0",
+  		"description": "Seu gerenciador de assinaturas",
+  		"license": {
+  			"name": "ISC"
+  		},
+  		"contact": {}
+  	},
+  	"openapi": "3.0.0",
+  	"paths": {
+  		"/users": {
+  			"post": {
+  				"operationId": "Create",
+  				"responses": {
+  					"201": {
+  						"description": "Created"
+  					}
+  				},
+  				"tags": [
+  					"Users"
+  				],
+  				"security": [],
+  				"parameters": [],
+  				"requestBody": {
+  					"required": true,
+  					"content": {
+  						"application/json": {
+  							"schema": {
+  								"$ref": "#/components/schemas/IUserDataDTO"
+  							}
+  						}
+  					}
+  				}
+  			},
+  			"get": {
+  				"operationId": "Find",
+  				"responses": {
+  					"200": {
+  						"description": "Ok",
+  						"content": {
+  							"application/json": {
+  								"schema": {
+  									"items": {
+  										"$ref": "#/components/schemas/Users"
+  									},
+  									"type": "array"
+  								}
+  							}
+  						}
+  					}
+  				},
+  				"tags": [
+  					"Users"
+  				],
+  				"security": [],
+  				"parameters": []
+  			}
+  		},
+      "/users/{userId}": {
+        "delete": {
+  				"operationId": "Delete",
+  				"responses": {
+  					"200": {
+  						"description": "Ok",
+  						"content": {
+  							"application/json": {
+  								"schema": {}
+  							}
+  						}
+  					},
+  					"404": {
+  						"description": "Usuário não encontrado."
+  					}
+  				},
+  				"tags": [
+  					"Users"
+  				],
+  				"security": [
+  					{
+  						"api_key": []
+  					}
+  				],
+  				"parameters": [
+  					{
+  						"in": "path",
+  						"name": "userId",
+  						"required": true,
+  						"schema": {
+  							"type": "string"
+  						}
+  					}
+  				]
+  			},
+  			"get": {
+  				"operationId": "FindById",
+  				"responses": {
+  					"200": {
+  						"description": "Ok",
+  						"content": {
+  							"application/json": {
+  								"schema": {
+  									"$ref": "#/components/schemas/Users"
+  								}
+  							}
+  						}
+  					},
+  					"404": {
+  						"description": "Usuário não encontrado."
+  					}
+  				},
+  				"tags": [
+  					"Users"
+  				],
+  				"security": [
+  					{
+  						"api_key": []
+  					}
+  				],
+  				"parameters": [
+  					{
+  						"in": "path",
+  						"name": "userId",
+  						"required": true,
+  						"schema": {
+  							"type": "string"
+  						}
+  					}
+  				]
+  			}
+      }
+  	},
+  	"servers": [
+  		{
+  			"url": "http://localhost:3333"
+  		},
+      {
+        "url": "https://subsfy-development.up.railway.app"
+      }
+  	]
+  }
 contentType: yaml
