@@ -1,17 +1,17 @@
-_id: req_54391c3f00d94282afc3f4b2674f4258
+_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d869a490386
 type: Request
 parentId: fld_4dc8c7a82c25485fb58a4caccd4b0e33
-modified: 1652143126011
-created: 1652115038633
-url: "{{ _.baseUrl }}/users"
-name: List
+modified: 1652143168347
+created: 1652142428780
+url: "{{ _.baseUrl }}/users/cdea0397-2b67-4c1d-88b0-7185bdc54bb0"
+name: Select
 description: ""
 method: GET
 body: {}
 parameters: []
 headers: []
 authentication: {}
-metaSortKey: -1651669919958.6875
+metaSortKey: -1651700413439.25
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true
