@@ -1,17 +1,25 @@
-_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d86df251b06
+_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d86dd2a26c8
 type: Request
 parentId: fld_4dc8c7a82c25485fb58a4caccd4b0e33
-modified: 1652197640349
-created: 1652146582961
+modified: 1652362207792
+created: 1652361457753
 url: "{{ base_url }}/users"
 name: List
 description: ""
 method: GET
 body: {}
-parameters: []
+parameters:
+  - name: name
+    disabled: true
+    value: string
+    id: pair_16a55990446d45728f3a15bf4a59af48
+  - name: email
+    disabled: true
+    value: string
+    id: pair_5cee747b018943cd91b4cae01fdfc600
 headers: []
 authentication: {}
-metaSortKey: -1651669919958.6875
+metaSortKey: -1652361457826
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

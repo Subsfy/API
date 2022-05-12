@@ -1,21 +1,17 @@
-_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d86f6fdbe48
+_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d8638e8e88f
 type: Request
 parentId: fld_4dc8c7a82c25485fb58a4caccd4b0e33
-modified: 1652215369185
-created: 1652142428782
-url: "{{ base_url }}/users/{{ _.userId }}"
+modified: 1652362456594
+created: 1652361457751
+url: "{{ base_url }}/users/{{ userId }}"
 name: Delete
 description: ""
 method: DELETE
 body: {}
 parameters: []
-headers:
-  - name: X-Access-Token
-    disabled: false
-    value: "{{ xAccessToken }}"
-    id: pair_1d779bb139954b229728b0f127341049
+headers: []
 authentication: {}
-metaSortKey: -1651639426478.125
+metaSortKey: -1652361457751
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

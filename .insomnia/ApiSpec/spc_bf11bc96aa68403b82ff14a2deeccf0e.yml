@@ -1,10 +1,10 @@
 _id: spc_bf11bc96aa68403b82ff14a2deeccf0e
 type: ApiSpec
 parentId: wrk_ada5ba4362a14285ad1f12ef2f922d86
-modified: 1652197685487
+modified: 1652362605284
 created: 1652066070431
 fileName: Subsfy
-contents: |
+contents: |-
   {
   	"components": {
   		"examples": {},
@@ -13,40 +13,6 @@ contents: |
   		"requestBodies": {},
   		"responses": {},
   		"schemas": {
-  			"IUserDataDTO": {
-  				"properties": {
-  					"id": {
-  						"type": "string"
-  					},
-  					"name": {
-  						"type": "string"
-  					},
-  					"avatar": {
-  						"type": "string"
-  					},
-  					"email": {
-  						"type": "string"
-  					},
-  					"currency": {
-  						"type": "string"
-  					},
-  					"payMethods": {
-  						"items": {
-  							"type": "string"
-  						},
-  						"type": "array"
-  					}
-  				},
-  				"required": [
-  					"name",
-  					"avatar",
-  					"email",
-  					"currency",
-  					"payMethods"
-  				],
-  				"type": "object",
-  				"additionalProperties": false
-  			},
   			"Users": {
   				"properties": {
   					"payMethods": {
@@ -87,6 +53,40 @@ contents: |
   				],
   				"type": "object",
   				"description": "Model Users"
+  			},
+  			"IUserDataDTO": {
+  				"properties": {
+  					"id": {
+  						"type": "string"
+  					},
+  					"name": {
+  						"type": "string"
+  					},
+  					"avatar": {
+  						"type": "string"
+  					},
+  					"email": {
+  						"type": "string"
+  					},
+  					"currency": {
+  						"type": "string"
+  					},
+  					"payMethods": {
+  						"items": {
+  							"type": "string"
+  						},
+  						"type": "array"
+  					}
+  				},
+  				"required": [
+  					"name",
+  					"avatar",
+  					"email",
+  					"currency",
+  					"payMethods"
+  				],
+  				"type": "object",
+  				"additionalProperties": false
   			}
   		},
   		"securitySchemes": {
@@ -110,10 +110,17 @@ contents: |
   	"paths": {
   		"/users": {
   			"post": {
-  				"operationId": "Create",
+  				"operationId": "createUser",
   				"responses": {
   					"201": {
-  						"description": "Created"
+  						"description": "Created",
+  						"content": {
+  							"application/json": {
+  								"schema": {
+  									"$ref": "#/components/schemas/Users"
+  								}
+  							}
+  						}
   					}
   				},
   				"tags": [
@@ -133,7 +140,7 @@ contents: |
   				}
   			},
   			"get": {
-  				"operationId": "Find",
+  				"operationId": "listUsers",
   				"responses": {
   					"200": {
   						"description": "Ok",
@@ -153,33 +160,45 @@ contents: |
   					"Users"
   				],
   				"security": [],
-  				"parameters": []
+  				"parameters": [
+  					{
+  						"in": "query",
+  						"name": "name",
+  						"required": false,
+  						"schema": {
+  							"type": "string"
+  						}
+  					},
+  					{
+  						"in": "query",
+  						"name": "email",
+  						"required": false,
+  						"schema": {
+  							"type": "string"
+  						}
+  					}
+  				]
   			}
   		},
-      "/users/{userId}": {
-        "delete": {
-  				"operationId": "Delete",
+  		"/users/{userId}": {
+  			"get": {
+  				"operationId": "selectUser",
   				"responses": {
   					"200": {
   						"description": "Ok",
   						"content": {
   							"application/json": {
-  								"schema": {}
+  								"schema": {
+  									"$ref": "#/components/schemas/Users"
+  								}
   							}
   						}
-  					},
-  					"404": {
-  						"description": "Usuário não encontrado."
   					}
   				},
   				"tags": [
   					"Users"
   				],
-  				"security": [
-  					{
-  						"api_key": []
-  					}
-  				],
+  				"security": [],
   				"parameters": [
   					{
   						"in": "path",
@@ -191,31 +210,17 @@ contents: |
   					}
   				]
   			},
-  			"get": {
-  				"operationId": "FindById",
+  			"delete": {
+  				"operationId": "deleteUser",
   				"responses": {
-  					"200": {
-  						"description": "Ok",
-  						"content": {
-  							"application/json": {
-  								"schema": {
-  									"$ref": "#/components/schemas/Users"
-  								}
-  							}
-  						}
-  					},
-  					"404": {
-  						"description": "Usuário não encontrado."
+  					"204": {
+  						"description": "No content"
   					}
   				},
   				"tags": [
   					"Users"
   				],
-  				"security": [
-  					{
-  						"api_key": []
-  					}
-  				],
+  				"security": [],
   				"parameters": [
   					{
   						"in": "path",
@@ -227,14 +232,14 @@ contents: |
   					}
   				]
   			}
-      }
+  		}
   	},
   	"servers": [
   		{
   			"url": "http://localhost:3333"
   		},
       {
-        "url": "https://subsfy-development.up.railway.app"
+        "url": "subsfy-development.up.railway.app"
       }
   	]
   }
