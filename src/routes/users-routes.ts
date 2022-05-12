@@ -27,8 +27,8 @@ export class UserRoutes {
 
     router.get('/users', async (req, res) => {
       try {
-        const data = req.query
-        const users = await controller.find(data)
+        const { name, email } = req.query
+        const users = await controller.find(String(name), String(email))
 
         return res.status(200).json({ success: true, message: 'Listagem de usuários', data: users })
       } catch (error) {
