@@ -10,7 +10,8 @@
     "dev": "nodemon --inspect=5858 -e ts,tsx --exec node -r tsconfig-paths/register -r ts-node/register ./src/local.ts",
     "build": "npx tsc",
     "start": "node dist/server.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "generate": "tsoa spec -c tsoa.config.json"
   },
   "repository": {
     "type": "git",

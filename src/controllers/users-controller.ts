@@ -1,5 +1,6 @@
+import { Body, Delete, Get, OperationId, Path, Post, Query, Route, SuccessResponse, Tags } from 'tsoa'
 import { Users } from '@prisma/client'
-import { IUserDataDTO, IUserFindDTO } from '../../src/dtos/usersDTOS'
+import { IUserDataDTO } from '../../src/dtos/usersDTOS'
 import { NodemailMailAdapter } from '@adapters/nodemailer/nodemailer-mail-adapter'
 import { PrismaUsersRepository } from '@repositories/prisma/prisma-users-repository'
 import { CreateUserUseCase } from '@use-cases/Users/create-user-use-case'
@@ -7,8 +8,13 @@ import { FindUsersUseCase } from '@use-cases/Users/find-users-use-case'
 import { SelectUserUseCase } from '@use-cases/Users/select-user-use-case'
 import { DeleteUsersUseCase } from '@use-cases/Users/delete-user-use-case'
 
+@Route('users')
+@Tags('Users')
 export class UsersController {
-  public async create({
+  @SuccessResponse('201', 'Created')
+  @Post()
+  @OperationId('createUser')
+  public async create(@Body() {
     name,
     email,
     avatar,
@@ -33,15 +39,19 @@ export class UsersController {
     })
   }
 
-  public async find(data: IUserFindDTO): Promise<Users[]> {
+  @Get()
+  @OperationId('listUsers')
+  public async find(@Query() name?: string, @Query() email?: string): Promise<Users[]> {
     const prismaUsersRepository = new PrismaUsersRepository()
 
     const findUsersUseCase = new FindUsersUseCase(prismaUsersRepository)
 
-    return findUsersUseCase.execute(data)
+    return findUsersUseCase.execute({ name, email })
   }
 
-  public async findById(userId: string): Promise<Users> {
+  @Get('{userId}')
+  @OperationId('selectUser')
+  public async findById(@Path() userId: string): Promise<Users> {
     const prismaUsersRepository = new PrismaUsersRepository()
 
     const selectUserUseCase = new SelectUserUseCase(prismaUsersRepository)
@@ -49,7 +59,9 @@ export class UsersController {
     return selectUserUseCase.execute(userId)
   }
 
-  public async delete(userId: string): Promise<void> {
+  @Delete('{userId}')
+  @OperationId('deleteUser')
+  public async delete(@Path() userId: string): Promise<void> {
     const prismaUsersRepository = new PrismaUsersRepository()
 
     const deleteUserUseCase = new DeleteUsersUseCase(prismaUsersRepository)
