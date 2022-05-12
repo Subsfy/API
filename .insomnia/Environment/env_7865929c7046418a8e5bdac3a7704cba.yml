@@ -1,13 +1,13 @@
 _id: env_7865929c7046418a8e5bdac3a7704cba
 type: Environment
 parentId: env_b3fff74d4537704b2eafb2953417ecfc61a2e1aa
-modified: 1652214594933
+modified: 1652362395950
 created: 1652123793810
 name: Local
 data:
   base_url: http://localhost:3333
   xAccessToken: ""
-  userId: "{% response 'body', 'req_wrk_ada5ba4362a14285ad1f12ef2f922d866e157c5d',
+  userId: "{% response 'body', 'req_wrk_ada5ba4362a14285ad1f12ef2f922d86fe3d55d0',
     'b64::JC5kYXRhLmlk::46b', 'when-expired', 60 %}"
 dataPropertyOrder:
   "&":
