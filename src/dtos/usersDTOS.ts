@@ -5,9 +5,17 @@ export interface IUserDataDTO {
   email: string;
   currency: string;
   payMethods: string[];
+  signId?: string;
+  sessionActive?: boolean;
 }
 
 export interface IUserFindDTO {
   name?: string;
+  email?: string;
+}
+
+export interface IUserFindUniqueDTO {
+  id?: string;
+  signId?: string;
   email?: string;
 }

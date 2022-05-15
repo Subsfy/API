@@ -15,11 +15,11 @@ export class CreateUserUseCase {
     } = request
 
     if (!name) {
-      throw new Error('Name is required.')
+      throw new Error('Nome é obrigatório.')
     }
 
     if (!email) {
-      throw new Error('Email is required.')
+      throw new Error('Email é obrigatório.')
     }
 
     const user = await this.usersRepository.create(request)

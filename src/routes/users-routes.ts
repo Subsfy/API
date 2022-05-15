@@ -12,7 +12,7 @@ export class UserRoutes {
   get routes() {
     const controller = this.userController
 
-    router.post('/users', async (req, res) => {
+    router.post('/', async (req, res) => {
       try {
         const user = await controller.create(req.body)
 
@@ -21,11 +21,24 @@ export class UserRoutes {
         logger.error('Error: Cadastro de usuário')
         logger.error(error)
 
-        return res.status(500).json({ success: false, message: 'Não foi possível realizar o cadastro, verifique suas informações.' })
+        return res.status(500).json({ success: false, message: 'Não foi possível cadastrar usuário, verifique suas informações.' })
       }
     })
 
-    router.get('/users', async (req, res) => {
+    router.put('/:userId', async (req, res) => {
+      try {
+        const user = await controller.update(req.params.userId, req.body)
+
+        return res.status(200).json({ success: true, message: 'Usuário atualizado com sucesso', data: user })
+      } catch (error) {
+        logger.error('Error: Cadastro de usuário')
+        logger.error(error)
+
+        return res.status(500).json({ success: false, message: 'Não foi possível atualizar o usuário, verifique suas informações.' })
+      }
+    })
+
+    router.get('/', async (req, res) => {
       try {
         const { name, email } = req.query
         const users = await controller.find(String(name), String(email))
@@ -35,11 +48,11 @@ export class UserRoutes {
         logger.error('Error: Listagem de usuários')
         logger.error(error)
 
-        return res.status(500).json({ success: false, message: 'Não foi possível realizar o cadastro, verifique suas informações.' })
+        return res.status(500).json({ success: false, message: 'Não foi possível buscar usuários, verifique suas informações.' })
       }
     })
 
-    router.get('/users/:userId', async (req, res) => {
+    router.get('/:userId', async (req, res) => {
       try {
         const { userId } = req.params
         const user = await controller.findById(userId)
@@ -49,11 +62,11 @@ export class UserRoutes {
         logger.error('Error: Seleção de usuário')
         logger.error(error)
 
-        return res.status(500).json({ success: false, message: 'Não foi possível realizar o cadastro, verifique suas informações.' })
+        return res.status(500).json({ success: false, message: 'Não foi possível selecionar um usuário, verifique suas informações.' })
       }
     })
 
-    router.delete('/users/:userId', async (req, res) => {
+    router.delete('/:userId', async (req, res) => {
       try {
         const { userId } = req.params
         await controller.delete(userId)
@@ -63,7 +76,7 @@ export class UserRoutes {
         logger.error('Error: Exclusão de usuário')
         logger.error(error)
 
-        return res.status(500).json({ success: false, message: 'Não foi possível realizar o cadastro, verifique suas informações.' })
+        return res.status(500).json({ success: false, message: 'Não foi possível excluir o usuário, verifique suas informações.' })
       }
     })
 

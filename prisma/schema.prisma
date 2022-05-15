@@ -14,11 +14,13 @@ model Users {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
-  name       String
-  avatar     String
-  email      String   @unique()
-  currency   String?
-  payMethods String[]
+  signId        String   @unique() @default("")
+  name          String
+  avatar        String
+  email         String   @unique()
+  currency      String?
+  payMethods    String[]
+  sessionActive Boolean  @default(false)
 
   Subscriptions Subscriptions[]
   @@index([name, email])
