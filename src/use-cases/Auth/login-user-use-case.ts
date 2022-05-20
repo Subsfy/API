@@ -12,10 +12,7 @@ export class LoginUserUseCase {
 
   async execute(token: string): Promise<Users> {
     const client = new OAuth2Client(process.env.CLIENT_ID)
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: process.env.CLIENT_ID,
-    })
+    const ticket = await client.verifyIdToken({ idToken: token })
     const payload = ticket.getPayload()
     const signId = payload?.sub || ''
 
