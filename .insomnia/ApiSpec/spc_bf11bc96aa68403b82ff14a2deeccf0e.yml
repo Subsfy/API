@@ -1,7 +1,7 @@
 _id: spc_bf11bc96aa68403b82ff14a2deeccf0e
 type: ApiSpec
 parentId: wrk_ada5ba4362a14285ad1f12ef2f922d86
-modified: 1652362605284
+modified: 1653339700445
 created: 1652066070431
 fileName: Subsfy
 contents: |-
@@ -15,6 +15,9 @@ contents: |-
   		"schemas": {
   			"Users": {
   				"properties": {
+  					"sessionActive": {
+  						"type": "boolean"
+  					},
   					"payMethods": {
   						"items": {
   							"type": "string"
@@ -34,6 +37,9 @@ contents: |-
   					"name": {
   						"type": "string"
   					},
+  					"signId": {
+  						"type": "string"
+  					},
   					"createdAt": {
   						"type": "string",
   						"format": "date-time"
@@ -43,16 +49,34 @@ contents: |-
   					}
   				},
   				"required": [
+  					"sessionActive",
   					"payMethods",
   					"currency",
   					"email",
   					"avatar",
   					"name",
+  					"signId",
   					"createdAt",
   					"id"
   				],
   				"type": "object",
   				"description": "Model Users"
+  			},
+  			"ILoginRequest": {
+  				"properties": {
+  					"token": {
+  						"type": "string"
+  					},
+  					"deviceType": {
+  						"type": "string"
+  					}
+  				},
+  				"required": [
+  					"token",
+  					"deviceType"
+  				],
+  				"type": "object",
+  				"additionalProperties": false
   			},
   			"IUserDataDTO": {
   				"properties": {
@@ -76,6 +100,12 @@ contents: |-
   							"type": "string"
   						},
   						"type": "array"
+  					},
+  					"signId": {
+  						"type": "string"
+  					},
+  					"sessionActive": {
+  						"type": "boolean"
   					}
   				},
   				"required": [
@@ -94,7 +124,7 @@ contents: |-
   				"type": "apiKey",
   				"name": "X-Access-Token",
   				"in": "header"
-  			}
+  			},
   		}
   	},
   	"info": {
@@ -108,6 +138,38 @@ contents: |-
   	},
   	"openapi": "3.0.0",
   	"paths": {
+  		"/auth/login": {
+  			"post": {
+  				"operationId": "loginUser",
+  				"responses": {
+  					"200": {
+  						"description": "Logged",
+  						"content": {
+  							"application/json": {
+  								"schema": {
+  									"$ref": "#/components/schemas/Users"
+  								}
+  							}
+  						}
+  					}
+  				},
+  				"tags": [
+  					"Authorization"
+  				],
+  				"security": [],
+  				"parameters": [],
+  				"requestBody": {
+  					"required": true,
+  					"content": {
+  						"application/json": {
+  							"schema": {
+  								"$ref": "#/components/schemas/ILoginRequest"
+  							}
+  						}
+  					}
+  				}
+  			}
+  		},
   		"/users": {
   			"post": {
   				"operationId": "createUser",
@@ -181,6 +243,45 @@ contents: |-
   			}
   		},
   		"/users/{userId}": {
+  			"put": {
+  				"operationId": "updateUser",
+  				"responses": {
+  					"200": {
+  						"description": "Ok",
+  						"content": {
+  							"application/json": {
+  								"schema": {
+  									"$ref": "#/components/schemas/Users"
+  								}
+  							}
+  						}
+  					}
+  				},
+  				"tags": [
+  					"Users"
+  				],
+  				"security": [],
+  				"parameters": [
+  					{
+  						"in": "path",
+  						"name": "userId",
+  						"required": true,
+  						"schema": {
+  							"type": "string"
+  						}
+  					}
+  				],
+  				"requestBody": {
+  					"required": true,
+  					"content": {
+  						"application/json": {
+  							"schema": {
+  								"$ref": "#/components/schemas/IUserDataDTO"
+  							}
+  						}
+  					}
+  				}
+  			},
   			"get": {
   				"operationId": "selectUser",
   				"responses": {
@@ -239,7 +340,7 @@ contents: |-
   			"url": "http://localhost:3333"
   		},
       {
-        "url": "subsfy-development.up.railway.app"
+        "url": "https://subsfy-development.up.railway.app"
       }
   	]
   }

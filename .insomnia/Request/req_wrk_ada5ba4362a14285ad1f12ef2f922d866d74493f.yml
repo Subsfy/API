@@ -1,12 +1,12 @@
-_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d86fe3d55d0
+_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d866d74493f
 type: Request
 parentId: wrk_ada5ba4362a14285ad1f12ef2f922d86
-modified: 1653339680587
-created: 1652361457754
-url: "{{ base_url }}/users"
-name: /users
+modified: 1653339680213
+created: 1653339252965
+url: "{{ base_url }}/users/{{ userId }}"
+name: /users/{userId}
 description: ""
-method: POST
+method: PUT
 body:
   mimeType: application/json
   text: |-
@@ -26,9 +26,9 @@ parameters: []
 headers:
   - name: Content-Type
     value: application/json
-    id: pair_e2816b7407cf4a2da99f8cf6693b1e7f
+    id: pair_55aab469d25c49779fc95434b7781eda
 authentication: {}
-metaSortKey: -1652361457851
+metaSortKey: -1653339252965
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

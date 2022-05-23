@@ -1,0 +1,30 @@
+_id: req_wrk_ada5ba4362a14285ad1f12ef2f922d8600ac9da2
+type: Request
+parentId: wrk_ada5ba4362a14285ad1f12ef2f922d86
+modified: 1653339700931
+created: 1653339252969
+url: "{{ base_url }}/auth/login"
+name: /auth/login
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "token": "string",
+      "deviceType": "string"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_1b048b1b38ad4b1da10e40a26defd0f3
+authentication: {}
+metaSortKey: -1653339252969
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
