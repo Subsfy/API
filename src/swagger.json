@@ -8,6 +8,9 @@
 		"schemas": {
 			"Users": {
 				"properties": {
+					"sessionActive": {
+						"type": "boolean"
+					},
 					"payMethods": {
 						"items": {
 							"type": "string"
@@ -27,6 +30,9 @@
 					"name": {
 						"type": "string"
 					},
+					"signId": {
+						"type": "string"
+					},
 					"createdAt": {
 						"type": "string",
 						"format": "date-time"
@@ -36,16 +42,34 @@
 					}
 				},
 				"required": [
+					"sessionActive",
 					"payMethods",
 					"currency",
 					"email",
 					"avatar",
 					"name",
+					"signId",
 					"createdAt",
 					"id"
 				],
 				"type": "object",
 				"description": "Model Users"
+			},
+			"ILoginRequest": {
+				"properties": {
+					"token": {
+						"type": "string"
+					},
+					"deviceType": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"token",
+					"deviceType"
+				],
+				"type": "object",
+				"additionalProperties": false
 			},
 			"IUserDataDTO": {
 				"properties": {
@@ -69,6 +93,12 @@
 							"type": "string"
 						},
 						"type": "array"
+					},
+					"signId": {
+						"type": "string"
+					},
+					"sessionActive": {
+						"type": "boolean"
 					}
 				},
 				"required": [
@@ -87,6 +117,11 @@
 				"type": "apiKey",
 				"name": "X-Access-Token",
 				"in": "header"
+			},
+			"base_url": {
+				"type": "apiKey",
+				"name": "base_url",
+				"in": "path"
 			}
 		}
 	},
@@ -101,6 +136,38 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/auth/login": {
+			"post": {
+				"operationId": "loginUser",
+				"responses": {
+					"200": {
+						"description": "Logged",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Users"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Authorization"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ILoginRequest"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/users": {
 			"post": {
 				"operationId": "createUser",
@@ -174,6 +241,45 @@
 			}
 		},
 		"/users/{userId}": {
+			"put": {
+				"operationId": "updateUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Users"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserDataDTO"
+							}
+						}
+					}
+				}
+			},
 			"get": {
 				"operationId": "selectUser",
 				"responses": {
@@ -229,7 +335,7 @@
 	},
 	"servers": [
 		{
-			"url": "localhost:3333,subsfy-development.up.railway.app"
+			"url": "/localhost:3333,subsfy-development.up.railway.app"
 		}
 	]
 }

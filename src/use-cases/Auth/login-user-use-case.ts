@@ -3,6 +3,7 @@ import { IMailAdapter } from '@adapters/mail-adapter'
 import { IUsersRepository } from '@repositories/users-repository'
 import { IUserDataDTO } from '../../dtos/usersDTOS'
 import { Users } from '@prisma/client'
+import { ILoginRequest } from '../../dtos/authDTO'
 
 export class LoginUserUseCase {
   constructor(
@@ -10,8 +11,10 @@ export class LoginUserUseCase {
     private mailAdapter: IMailAdapter
   ) {}
 
-  async execute(token: string): Promise<Users> {
-    const client = new OAuth2Client(process.env.CLIENT_ID)
+  async execute({ token, deviceType }: ILoginRequest): Promise<Users> {
+    const clientId = deviceType === 'android'
+      ? process.env.ANDROID_CLIENT_ID : process.env.IOS_CLIENT_ID
+    const client = new OAuth2Client(clientId)
     const ticket = await client.verifyIdToken({ idToken: token })
     const payload = ticket.getPayload()
     const signId = payload?.sub || ''

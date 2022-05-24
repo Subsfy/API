@@ -14,8 +14,8 @@ export class AuthRoutes {
 
     router.post('/login', async (req, res) => {
       try {
-        const { token } = req.body
-        const user = await controller.login(token)
+        const { token, deviceType } = req.body
+        const user = await controller.login({ token, deviceType })
 
         return res.status(200).json({ success: true, message: 'Login realizado com sucesso', data: user })
       } catch (error) {
