@@ -1,0 +1,341 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Users": {
+				"properties": {
+					"sessionActive": {
+						"type": "boolean"
+					},
+					"payMethods": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"currency": {
+						"type": "string",
+						"nullable": true
+					},
+					"email": {
+						"type": "string"
+					},
+					"avatar": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"signId": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"sessionActive",
+					"payMethods",
+					"currency",
+					"email",
+					"avatar",
+					"name",
+					"signId",
+					"createdAt",
+					"id"
+				],
+				"type": "object",
+				"description": "Model Users"
+			},
+			"ILoginRequest": {
+				"properties": {
+					"token": {
+						"type": "string"
+					},
+					"deviceType": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"token",
+					"deviceType"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUserDataDTO": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"avatar": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"currency": {
+						"type": "string"
+					},
+					"payMethods": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"signId": {
+						"type": "string"
+					},
+					"sessionActive": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"name",
+					"avatar",
+					"email",
+					"currency",
+					"payMethods"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"name": "X-Access-Token",
+				"in": "header"
+			},
+			"base_url": {
+				"type": "apiKey",
+				"name": "base_url",
+				"in": "path"
+			}
+		}
+	},
+	"info": {
+		"title": "subsfy",
+		"version": "1.0.0",
+		"description": "Seu gerenciador de assinaturas",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/auth/login": {
+			"post": {
+				"operationId": "loginUser",
+				"responses": {
+					"200": {
+						"description": "Logged",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Users"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Authorization"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ILoginRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users": {
+			"post": {
+				"operationId": "createUser",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Users"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserDataDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "listUsers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Users"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "name",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "email",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users/{userId}": {
+			"put": {
+				"operationId": "updateUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Users"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserDataDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "selectUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Users"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "deleteUser",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/localhost:3333,subsfy-development.up.railway.app"
+		}
+	]
+}

@@ -1,6 +1,6 @@
 import { IMailAdapter } from '@adapters/mail-adapter'
+import { IUserDataDTO } from '../../../src/dtos/usersDTOS'
 import { IUsersRepository } from '@repositories/users-repository'
-import { ICreateUserCaseRequest } from '../dtos/usersDTOS'
 
 export class CreateUserUseCase {
   constructor(
@@ -8,21 +8,21 @@ export class CreateUserUseCase {
     private mailAdapter: IMailAdapter
   ) {}
 
-  async execute(request: ICreateUserCaseRequest) {
+  async execute(request: IUserDataDTO) {
     const {
       name,
       email
     } = request
 
     if (!name) {
-      throw new Error('Name is required.')
+      throw new Error('Nome é obrigatório.')
     }
 
     if (!email) {
-      throw new Error('Email is required.')
+      throw new Error('Email é obrigatório.')
     }
 
-    await this.usersRepository.create(request)
+    const user = await this.usersRepository.create(request)
 
     await this.mailAdapter.sendMail({
       to: email,
@@ -33,5 +33,7 @@ export class CreateUserUseCase {
         '</div>',
       ].join('\n')
     })
+
+    return user
   }
 }
