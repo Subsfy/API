@@ -1,0 +1,116 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"LoginUserOutputData": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"avatar": {
+						"type": "string"
+					},
+					"firstSession": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"email",
+					"avatar",
+					"firstSession"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ILoginRequest": {
+				"properties": {
+					"token": {
+						"type": "string"
+					},
+					"deviceType": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"token",
+					"deviceType"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"name": "X-Access-Token",
+				"in": "header"
+			},
+			"base_url": {
+				"type": "apiKey",
+				"name": "base_url",
+				"in": "path"
+			}
+		}
+	},
+	"info": {
+		"title": "subsfy",
+		"version": "1.0.0",
+		"description": "Seu gerenciador de assinaturas",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/auth/login": {
+			"post": {
+				"operationId": "loginUser",
+				"responses": {
+					"200": {
+						"description": "Logged",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/LoginUserOutputData"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Authorization"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ILoginRequest"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/localhost:3333,subsfy-development.up.railway.app"
+		}
+	]
+}

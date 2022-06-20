@@ -11,10 +11,10 @@ datasource db {
 }
 
 model Users {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
+  id        String    @id @default(uuid())
+  createdAt DateTime? @default(now())
 
-  signId        String   @unique() @default("")
+  signId        String   @default("")
   name          String
   avatar        String
   email         String   @unique()
