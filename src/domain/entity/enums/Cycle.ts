@@ -1,0 +1,6 @@
+export enum Cycle {
+  MENSAL = 'MENSAL',
+  TRIMESTRAL = 'TRIMESTRAL',
+  SEMESTRAL = 'SEMESTRAL',
+  ANUAL = 'ANUAL',
+}

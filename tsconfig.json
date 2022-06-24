@@ -74,12 +74,13 @@
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     
     "paths": {
-      "@adapters/*": ["./src/adapters/*"],
+      "@adapter/*": ["./src/adapter/*"],
       "@configs/*": ["./src/configs/*"],
-      "@controllers/*": ["./src/controllers/*"],
-      "@repositories/*": ["./src/repositories/*"],
-      "@use-cases/*": ["./src/use-cases/*"],
-      "@winston": ["./src/winston.ts"]
+      "@controllers/*": ["./src/infra/controllers/*"],
+      "@domain/*": ["./src/domain/*"],
+      "@infra/*": ["./src/infra/*"],
+      "@usecase/*": ["./src/domain/usecase/*"],
+      "@winston": ["./src/infra/log/winston.ts"]
     },
     /* Type Checking */
     // "strict": true,                                      /* Enable all strict type-checking options. */
@@ -107,5 +108,5 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["src"],
-  "exclude": ["node_modules", "src/**/**/*.spec.ts", "src/local.ts"]
+  "exclude": ["node_modules", "prisma"]
 }
