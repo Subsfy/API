@@ -1,8 +1,8 @@
-import { RepositoryDatabaseFactory } from './../../adapter/factory/RepositoryDatabaseFactory'
-import { LoginUserInputData } from './../../domain/usecase/DTOs/LoginUserInputData'
-import { LoginUserOutputData } from './../../domain/usecase/DTOs/LoginUserOutputData'
+import { RepositoryDatabaseFactory } from '@adapter/factory/RepositoryDatabaseFactory'
+import { LoginUserInputData } from '@domain/usecase/DTOs/LoginUserInputData'
+import { LoginUserOutputData } from '@domain/usecase/DTOs/LoginUserOutputData'
 import { Body, OperationId, Post, Route, SuccessResponse, Tags } from 'tsoa'
-import { LoginUser } from '../../domain/usecase/LoginUser'
+import { LoginUser } from '@domain/usecase/LoginUser'
 import { GoogleAuth } from '../auths/GoogleAuth'
 import { Nodemailer } from '../mailers/NodeMailer'
 

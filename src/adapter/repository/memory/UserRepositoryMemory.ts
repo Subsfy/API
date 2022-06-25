@@ -1,6 +1,6 @@
 import { User } from '@domain/entity/User'
 import { IUserRepository } from '@domain/repository/UserRepository'
-import { randomUUID } from 'crypto'
+import { uuid } from 'uuidv4'
 
 export class UserRepositoryMemory implements IUserRepository {
   users: User[]
@@ -10,7 +10,7 @@ export class UserRepositoryMemory implements IUserRepository {
   }
 
   async save(user: User): Promise<void> {
-    user.id = randomUUID()
+    user.id = uuid()
     this.users.push(user)
   }
 
